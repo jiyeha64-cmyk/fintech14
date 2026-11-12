@@ -1,13 +1,191 @@
-<html>
-  <head>
-    <title>Fintech 14 Homepage</title>
-  </head>
-  <body>
-    <h1>Welcome to Fintech 14 Homepage
-    </u1>
-      <li>instructor</li>
-      <li>student 1</li>
-      </li>student 2</li>
-    </u1>>
-  </body>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fintech 14 Homepage</title>
+  <style>
+    /* ===== 색 설정: 여기만 바꾸면 전체 분위기가 바뀌어요 ===== */
+    :root {
+      --bg: #0b1020;       /* 배경: 짙은 남색 */
+      --card: #141b2f;     /* 카드 배경 */
+      --accent1: #4f8cff;  /* 파랑 */
+      --accent2: #00e0b8;  /* 민트 */
+      --text: #e8ecf5;
+      --sub: #8a94ad;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ----- 상단 메뉴 ----- */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 8%;
+      background: rgba(11, 16, 32, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #1f2842;
+    }
+    .logo { font-weight: 800; font-size: 1.2rem; }
+    .logo span { color: var(--accent2); }
+    nav ul { list-style: none; display: flex; gap: 28px; }
+    nav a { color: var(--sub); text-decoration: none; transition: color .2s; }
+    nav a:hover { color: var(--text); }
+
+    /* ----- 첫 화면 ----- */
+    .hero {
+      text-align: center;
+      padding: 120px 8% 100px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(79,140,255,.25), transparent 40%),
+        radial-gradient(circle at 80% 60%, rgba(0,224,184,.18), transparent 40%);
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid #2a3556;
+      border-radius: 999px;
+      font-size: .85rem;
+      color: var(--accent2);
+      margin-bottom: 24px;
+    }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; line-height: 1.2; }
+    .hero h1 .grad {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text; background-clip: text;
+      color: transparent;
+    }
+    .hero p { color: var(--sub); margin-top: 18px; font-size: 1.1rem; }
+    .btn {
+      display: inline-block;
+      margin-top: 36px;
+      padding: 14px 32px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #0b1020; font-weight: 700; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,224,184,.3); }
+
+    /* ----- 구역 공통 ----- */
+    section { padding: 80px 8%; }
+    section h2 { font-size: 2rem; margin-bottom: 8px; }
+    .section-sub { color: var(--sub); margin-bottom: 40px; }
+
+    /* ----- 멤버 카드 ----- */
+    .members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid #1f2842;
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: transform .25s, border-color .25s;
+    }
+    .card:hover { transform: translateY(-6px); border-color: var(--accent1); }
+    .avatar {
+      width: 80px; height: 80px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    }
+    .card h3 { font-size: 1.2rem; }
+    .role { color: var(--accent2); font-size: .9rem; margin-top: 4px; }
+    .card p.desc { color: var(--sub); font-size: .9rem; margin-top: 12px; }
+
+    /* ----- 숫자 통계 ----- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    .stat { background: var(--card); border-radius: 20px; padding: 28px; border: 1px solid #1f2842; }
+    .stat .num { font-size: 2.4rem; font-weight: 800; color: var(--accent1); }
+    .stat .label { color: var(--sub); }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: var(--sub);
+      font-size: .85rem;
+      border-top: 1px solid #1f2842;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 메뉴 -->
+  <nav>
+    <div class="logo">Fintech<span>14</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#members">Members</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- 첫 화면 -->
+  <header class="hero">
+    <span class="badge">💳 Fintech Class · 2026 Fall</span>
+    <h1>Welcome to<br><span class="grad">Fintech 14</span> Homepage</h1>
+    <p>금융과 기술이 만나는 곳, 우리 반을 소개합니다.</p>
+    <a href="#members" class="btn">Meet the Team →</a>
+  </header>
+
+  <!-- 소개 -->
+  <section id="about">
+    <h2>About</h2>
+    <p class="section-sub">Fintech 14는 핀테크를 함께 공부하는 팀이에요.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">3</div><div class="label">Members</div></div>
+      <div class="stat"><div class="num">14</div><div class="label">Team No.</div></div>
+      <div class="stat"><div class="num">∞</div><div class="label">Ideas</div></div>
+    </div>
+  </section>
+
+  <!-- 멤버 (원래 목록이 카드로 바뀐 부분) -->
+  <section id="members">
+    <h2>Members</h2>
+    <p class="section-sub">우리 팀을 소개합니다</p>
+    <div class="members">
+      <div class="card">
+        <div class="avatar">👨‍🏫</div>
+        <h3>Instructor</h3>
+        <div class="role">강사</div>
+        <p class="desc">이름과 한 줄 소개를 적어 주세요</p>
+      </div>
+      <div class="card">
+        <div class="avatar">🧑‍💻</div>
+        <h3>Student 1</h3>
+        <div class="role">학생</div>
+        <p class="desc">이름과 한 줄 소개를 적어 주세요</p>
+      </div>
+      <div class="card">
+        <div class="avatar">👩‍💻</div>
+        <h3>Student 2</h3>
+        <div class="role">학생</div>
+        <p class="desc">이름과 한 줄 소개를 적어 주세요</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    © 2026 Fintech 14 · Made with HTML &amp; CSS
+  </footer>
+
+</body>
 </html>
